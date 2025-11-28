@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 
 // Fonction pour sécuriser les entrées
@@ -28,9 +29,13 @@ $password = filtrer($_POST['password']);
 
     // Vérification du mot de passe hashé
     if($username === "admin" && $password === "1234") {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
         header("Location: admin_dashboard.php");
     }
     else if($username === "rh" && $password === "1234") {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
         header("Location: rh_dashboard.php");
     }  
     else if (password_verify($password, $user['password_hash'])) {
