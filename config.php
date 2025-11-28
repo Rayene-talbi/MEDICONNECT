@@ -1,10 +1,10 @@
 <?php
 
 $host = '127.0.0.1';
-$port = 3307;              // ⚠️ le port MySQL indiqué dans XAMPP
-$dbname = 'mediconnect';   // ⚠️ remplace par le VRAI nom de ta base
+$port = 3307;             
+$dbname = 'mediconnect';   
 $user = 'root';
-$pass = '';                // mot de passe vide sous XAMPP
+$pass = '';               
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
