@@ -85,7 +85,7 @@ try {
 } catch (PDOException $e) {
     die("Erreur lors de l’enregistrement en base : " . $e->getMessage());
 }
-header("Location:Merci.html");
+header("Location: Merci.html");
 exit;
 ?>
 
