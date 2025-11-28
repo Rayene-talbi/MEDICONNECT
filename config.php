@@ -4,7 +4,10 @@ $host = '127.0.0.1';
 $port = 3307;             
 $dbname = 'mediconnect';   
 $user = 'root';
-$pass = '';               
+$pass = '';              
+
+
+
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
@@ -16,5 +19,14 @@ try {
 } catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());
 }
+
+
+function openDB() {
+    $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
+    $pdo = new PDO($dsn, $user, $pass);
+    return $pdo;
+}
+
+
 
 ?>

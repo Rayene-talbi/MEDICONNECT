@@ -27,10 +27,13 @@ $password = filtrer($_POST['password']);
     }
 
     // Vérification du mot de passe hashé
-    if($username === "admin" || $password === "admin") {
+    if($username === "admin" && $password === "1234") {
         header("Location: admin_dashboard.php");
-    } 
-    else if (password_verify($password, $user['pwd'])) {
+    }
+    else if($username === "rh" && $password === "1234") {
+        header("Location: rh_dashboard.php");
+    }  
+    else if (password_verify($password, $user['password_hash'])) {
 
         // Session OK
         $_SESSION['user_id'] = $user['id'];
