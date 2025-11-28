@@ -1,0 +1,81 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de Candidature</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Formulaire de Candidature</h1>
+    <p class="intro">
+        Merci de remplir le formulaire ci-dessous. Les informations collectées sont strictement confidentielles et conformes au RGPD.
+    </p>
+
+    <form action="traitement.php" method="post" enctype="multipart/form-data">
+
+        <div class="grid">
+            <div class="field">
+                <label>Nom *</label>
+                <input type="text" name="nom" required>
+            </div>
+
+            <div class="field">
+                <label>Prénom *</label>
+                <input type="text" name="prenom" required>
+            </div>
+
+            <div class="field">
+                <label>Date de naissance *</label>
+                <input type="date" name="date_naissance" required>
+            </div>
+
+            <div class="field">
+                <label>Lieu de naissance *</label>
+                <input type="text" name="lieu_naissance" required>
+            </div>
+
+            <div class="field">
+                <label>Niveau de diplôme *</label>
+                <input type="text" name="niv_diplome" required>
+            </div>
+
+            <div class="field">
+                <label>Adresse postale *</label>
+                <input type="text" name="adresse" required>
+            </div>
+
+            <div class="field">
+                <label>Adresse email *</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="field">
+                <label>Numéro de Sécurité Sociale *</label>
+                <input type="text" name="secu" minlength="15" maxlength="15" required>
+            </div>
+
+            <div class="field">
+                <label>Téléphone *</label>
+                <input type="tel" name="telephone" required>
+            </div>
+
+            <div class="field">
+                <label>CV (PDF uniquement) *</label>
+                <input type="file" name="cv" accept="application/pdf" required>
+            </div>
+        </div>
+
+        <div class="rgpd">
+            <input type="checkbox" required>
+            <label>
+                J’accepte que mes données soient traitées dans le cadre du processus de recrutement, conformément au RGPD.
+            </label>
+        </div>
+
+        <button type="submit" class="btn">Envoyer ma candidature</button>
+    </form>
+</div>
+
+</body>
+</html>
