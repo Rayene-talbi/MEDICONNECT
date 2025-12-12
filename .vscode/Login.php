@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'config.php';
 
 // Fonction pour sécuriser les entrées
 function filtrer($data) {
@@ -10,14 +11,10 @@ function filtrer($data) {
 $username = filtrer($_POST['username']);
 $password = filtrer($_POST['password']);
 
-try {
-    // Connexion à la base
-    $pdo = new PDO("mysql:host=localhost;dbname=mediconnect", "auth_user", "motdepasse_securise", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+
 
     // Vérification utilisateur
-    $sql = "SELECT id, username, pwd, role FROM users WHERE username = :username";
+    $sql = "SELECT * FROM utilisateurs WHERE username = :username";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
@@ -31,10 +28,21 @@ try {
     }
 
     // Vérification du mot de passe hashé
-    if($username === "admin" || $password === "admin") {
+    if($username === "admin" && $password === "1234") {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        session_write_close();
         header("Location: admin_dashboard.php");
-    } 
-    else if (password_verify($password, $user['pwd'])) {
+        exit;
+    }
+    else if($username === "rh" && $password === "1234") {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        session_write_close();
+        header("Location: rh_dashboard.php");
+        exit;
+    }  
+    else if (password_verify($password, $user['password_hash'])) {
 
         // Session OK
         $_SESSION['user_id'] = $user['id'];
@@ -43,9 +51,13 @@ try {
 
         // Redirection selon rôle
         if ($user['role'] === 'admin') {
+            session_write_close();
             header("Location: admin_dashboard.php");
+            exit;
         } else {
+            session_write_close();
             header("Location: rh_dashboard.php");
+            exit;
         }
         exit;
 
@@ -53,7 +65,6 @@ try {
         die("Mot de passe incorrect !");
     }
 
-} catch (Exception $e) {
-    die("Erreur serveur : " . $e->getMessage());
-}
+
 ?>
+

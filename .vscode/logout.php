@@ -3,6 +3,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header('Location: Acceuille.html');
+header('Location: Acceuil.html');
 exit;
 ?>
